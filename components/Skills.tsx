@@ -1,10 +1,13 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Skill from '@/components/Skill'
+import { Technology } from '@/typings'
 
-type Props = {}
+type Props = {
+    skills: Technology[],
+}
 
-function Skills({}: Props) {
+function Skills({skills}: Props) {
   return (
     <motion.div 
     initial={{
@@ -21,18 +24,19 @@ function Skills({}: Props) {
         <h2 className='text-gray-500 uppercase tracking-[20px] md:tracking-[30px] font-semibold absolute top-24 text-2xl md:text-3xl '>Skills</h2>
 
 
-        <h3 className='absolute top-36 uppercase tracking-[3px] text-gray-500 font-light text-xs '>Hover over a skill for proficiency</h3>
+        <h3 className='absolute top-36  uppercase tracking-[3px] text-gray-500 font-light text-xs '>Hover over a skill for proficiency</h3>
 
-        <div className='grid grid-cols-3 gap-3 p-4 mx-auto'>
-            <Skill />
-            <Skill />
-            <Skill />
-            <Skill />
-            <Skill />
-            <Skill />
-            <Skill />
-            <Skill />
-            <Skill />
+        <div className='grid grid-cols-5 gap-x-5 md:gap-x-10 p-4 mx-auto'>
+            {
+                skills?.slice(0,skills.length/2).map((skill, i) => (
+                    <Skill  skill={skill} />
+                ))
+            }
+            {
+                skills?.slice(skills.length/2, skills.length).map((skill, i) => (
+                    <Skill  skill={skill} directionLeft/>
+                ))
+            }
         </div>
 
 

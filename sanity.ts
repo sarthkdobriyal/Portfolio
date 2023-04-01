@@ -1,26 +1,16 @@
-import { createClient} from 'next-sanity'
-import imageUrlBuilder  from "@sanity/image-url"
+import {createClient, groq} from 'next-sanity'
+import createImageUrlBuilder from '@sanity/image-url'
 
-const config = {
-    projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
-    dataset: process.env.NEXT_PUBLIC_PROJECT_DATASET || "production",
-    apiVersion: "2021-10-21",
-    useCdn: true
-  }
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
+const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION;
 
-export const client = createClient(config);
 
-export const urlFor = (source:any) => {
-   return imageUrlBuilder(client).image(source)
-}
+export const client = createClient({
+    projectId,
+    dataset,
+    apiVersion, // https://www.sanity.io/docs/api-versioning
+    useCdn: true, // if you're using ISR or only static generation at build time then you can set this to `false` to guarantee no stale content
+  })
 
-export async function getServerSideProps(){
-    const query = `*[_type == "pageInfo"]`
-    const pageInfo = await client.fetch(query);
-    return {
-      props:{
-        pageInfo,
-      }
-    }
-  
-  }
+export const urlFor = (source: any) => createImageUrlBuilder({dataset,projectId,apiVersion}).image(source)

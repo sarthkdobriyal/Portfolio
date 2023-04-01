@@ -11,14 +11,31 @@ import Experience from '@/components/Experience'
 import Project from '@/components/Project'
 import Skills from '@/components/Skills'
 import Contact from '@/components/Contact'
+import { GetStaticProps } from 'next';
+import { WorkExperience, PageInfo, Projects, Technology, Social } from '@/typings';
+import {fetchPageInfo} from '../utils/fetchPageInfo'
+import { fetchExperience } from '@/utils/fetchExperience';
+import { fetchProject } from '@/utils/fetchProject';
+import { fetchSkills } from '@/utils/fetchSkills';
+import { fetchSocials } from '@/utils/fetchSocials';
 
 
+type Props = {
+  pageInfo: PageInfo,
+  experience: WorkExperience[],
+  skill: Technology[],
+  projects: Projects[],
+  socials: Social[],
+}
 
 
-
-
-
-export default function Home() {
+export default function Home({
+  pageInfo,
+  experience,
+  projects,
+  skill,
+  socials,
+}: Props) {
   return (
     <div className='bg-[rgb(36,36,36)] h-screen text-white snap-y snap-mandatory overflow-y-scroll overflow-x-hidden scrollbar-thin scrollbar-track-gray-600 scrollbar-thumb-[#f7ab0a]/50 z-0'>
       <Head>
@@ -28,40 +45,38 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main >
-          <Header />
+          <Header socials={socials} />
 
           {/* //hero */}
           <section id="hero" className='snap-center scroll-smooth'>
-          <Hero />
+          <Hero pageInfo={pageInfo}/>
           </section>
 
           {/* about */}
           <section id="about" className='snap-center scroll-smooth' >
-          <About />
+          <About pageInfo={pageInfo} />
           </section>
 
 
           {/* experience */}
-          <section id="experience" className='snap-center scroll-smooth'>
-            <Experience />
-          </section>
+          { experience.length !== 0 && 
+            <section id="experience" className='snap-center scroll-smooth'>
+            <Experience experience={experience} />
+          </section>}
 
           {/* skills */}
           <section id="skills" className='snap-center scroll-smooth'>
-            <Skills />
+            <Skills skills={skill} />
           </section>
 
           {/* projects */}
           <section id="project"className='snap-center scroll-smooth'>
-            <Project />
+            <Project projects={projects} />
           </section>
-
-
-
 
           {/* contact */}
           <section id="contact" className='snap-center scroll-smooth'>
-            <Contact />
+            <Contact pageInfo={pageInfo} />
           </section>
 
 
@@ -72,3 +87,23 @@ export default function Home() {
 
 
 
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const pageInfo: PageInfo = await fetchPageInfo()
+  const experience: WorkExperience[] = await fetchExperience()
+  const skill : Technology[]  = await fetchSkills()
+  const projects: Projects[] = await fetchProject()
+  const socials: Social[] = await fetchSocials()
+
+  return {
+    props: {
+      pageInfo,
+      experience,
+      skill,
+      projects,
+      socials,
+    },
+    revalidate: 100
+  }
+
+
+}

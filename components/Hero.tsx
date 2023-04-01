@@ -3,18 +3,24 @@ import BackgroudCircles from './BackgroudCircles'
 import { motion } from 'framer-motion';
 import { Cursor, useTypewriter } from 'react-simple-typewriter'
 import Link from "next/link"
+import { PageInfo } from '@/typings';
+import { urlFor } from '@/sanity';
 
-type Props = {}
+type Props = {
+    pageInfo: PageInfo
+}
 
-function Hero({}: Props) {
+function Hero({pageInfo}: Props) {
     const [text, count] = useTypewriter({
         words: [
-            "Hi! The Name's Sarthak Dobriyal",
-            "Guy-who-loves-Coffee.tsx",
-            "<ButLovesToCodeMore />"
+            `Hi! I'm ${pageInfo?.name}`,
+            "Frontend Master",
+            "Web3 Enthusiast",
+            "Open Source Contributor",
+            "A Life Long Learner"
         ],
         loop:true,
-        delaySpeed:2000,
+        delaySpeed:2500,
     });
   return (
     <div className='h-screen flex flex-col items-center justify-center overflow-hidden text-center '>
@@ -35,11 +41,11 @@ function Hero({}: Props) {
             duration:1.5
         }}
         
-        className='relative rounded-full h-24 w-24 md:h-32 md:w-32 mb-8 mx-auto object-cover '
-        src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" />
+        className='relative rounded-full h-24 w-24 md:h-52 md:w-52 mb-8 mx-auto object-cover '
+        src={String(urlFor(pageInfo?.heroImage))} alt="" />
 
         <div className='z-20'>
-        <h2 className='text-xs md:text-base uppercase text-gray-500 pb-2 md:tracking-[20px] tracking-[10px] font-extrabold '>Software Engineer</h2>
+        <h2 className='text-xs md:text-base uppercase text-gray-500 pb-2 md:tracking-[20px] tracking-[10px] font-extrabold '>{pageInfo?.role}</h2>
 
         <h1 className='text-2xl md:text-3xl lg:text-6xl'>
         <span className='font-bold  text-center'>{text}</span>

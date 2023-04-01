@@ -13,6 +13,8 @@ snity/node_modules
 /.next/
 /out/
 
+sanity/node_modules
+
 # production
 /build
 

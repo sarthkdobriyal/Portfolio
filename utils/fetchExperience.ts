@@ -1,9 +1,9 @@
-import { Experience } from "../typings"
+import { WorkExperience } from "../typings"
 
-export const fetchProject = async() => {
+export const fetchExperience = async() => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/getExperience`);
     const data = await res.json()
 
-    const experience: Experience[] = data.experience
+    const experience: WorkExperience[] = data.experience
     return experience;
 }

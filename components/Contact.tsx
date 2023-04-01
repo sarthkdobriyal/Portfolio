@@ -2,6 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { EnvelopeIcon, MapPinIcon, PhoneIcon } from '@heroicons/react/24/solid'
 import { useForm, SubmitHandler } from "react-hook-form";
+import { PageInfo } from '@/typings';
 
 type Inputs = {
     name: string;
@@ -10,9 +11,11 @@ type Inputs = {
   message:string;
 }
 
-type Props = {}
+type Props = {
+  pageInfo: PageInfo
+}
 
-function Contact({}: Props) {
+function Contact({pageInfo}: Props) {
     const { register, handleSubmit } = useForm<Inputs>();
 
     const onSubmit: SubmitHandler<Inputs> = formData => {
@@ -24,28 +27,28 @@ function Contact({}: Props) {
     <motion.div 
     className='h-screen flex justify-evenly items-center relative flex-col md:flex-row mx-auto max-w-7xl px-10 '>
         
-        <h3 className='text-gray-500 uppercase tracking-[20px] md:tracking-[30px] font-semibold absolute top-24 text-2xl md:text-3xl '>Contact</h3>
+        <h3 className='text-gray-500 uppercase tracking-[20px] md:tracking-[30px] font-semibold absolute top-24 text-2xl md:text-3xl '>Contact Me</h3>
 
 
         <div className='flex flex-col space-y-8 justify-start items-center mt-16 '>
 
         <h4 className='text-xl lg:text-3xl font-bold italic text-center   '>
-            I have got just what you need.{" "}
-            <span className='underline underline-offset-4 decoration-[#f7ab0a]/50'>Lets Talk</span>
+            I will solve all your technical difficulties.{" "}
+            <span className='underline underline-offset-4 decoration-[#f7ab0a]/50'>Let&apos;s Connect</span>
         </h4>
 
         <div className='space-y-2 text-left '>
             <div className='flex items-center space-x-2 '>
             <PhoneIcon className="h-5 w-5 text-[#f7ab0a]/50 animate-pulse" /> 
-            <p className='text-sm lg:text-lg'>+918755029432</p>
+            <p className='text-sm lg:text-lg'>{pageInfo?.phoneNumber}</p>
             </div>
             <div className='flex items-center space-x-2 '>
             <EnvelopeIcon className="h-5 w-5 text-[#f7ab0a]/50 animate-pulse" /> 
-            <p className='text-sm lg:text-lg'>dobriyalsarthaksa.8@gmail.com</p>
+            <p className='text-sm lg:text-lg'>{pageInfo?.email}</p>
             </div>
             <div className='flex items-center space-x-2 '>
             <MapPinIcon className="h-5 w-5 text-[#f7ab0a]/50 animate-pulse" /> 
-            <p className='text-sm lg:text-lg'>12 Developer Lane</p>
+            <p className='text-sm lg:text-lg'>{pageInfo?.address}</p>
             </div>
         </div>
 
