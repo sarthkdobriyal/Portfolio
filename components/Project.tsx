@@ -46,6 +46,16 @@ function Project({projects}: Props) {
                         </Link>
                         <div className='space-y-6 px-0 md:px-10 max-w-6xl '>
                             <h4 className='text-4xl font-bold text-center tracking-[3px]'><span className='underline decoration-[#f7ab0a]/50 underline-offset-4 '>{project.title}</span></h4>
+                            
+                            <div className="flex items-center space-x-2 justify-center">
+
+                            {
+                                project?.technologies.map((tech) => (
+                                    <img className='h-10 w-10' key={tech._id} src={String(urlFor(tech.image))} alt="" />
+                                ))
+                            }
+                            </div>
+
                             {
                                 project.summary && 
                                 project.summary.map((sum: string) => (
