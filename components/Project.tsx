@@ -16,7 +16,6 @@ type Para = {
   }
 
 function Project({projects}: Props) {
-    console.log(projects)
 
   return (
     <motion.div
