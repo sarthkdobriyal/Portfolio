@@ -23,7 +23,7 @@ import { useRouter } from 'next/router';
 
 type Props = {
   pageInfo: PageInfo,
-  experience: WorkExperience[],
+  // experience: WorkExperience[],
   skill: Technology[],
   projects: Projects[],
   socials: Social[],
@@ -32,20 +32,13 @@ type Props = {
 
 export default function Home({
   pageInfo,
-  experience,
+  // experience,
   projects,
   skill,
   socials,
 }: Props) {
 
-  // const router = useRouter();
-
-  // if(router.isFallback){
-  //   return (
-  //     <h1>Loading...</h1>
-  //   )
-  // }
-
+ 
 
   return (
     <div className='bg-[rgb(36,36,36)] h-screen text-white snap-y snap-mandatory overflow-y-scroll overflow-x-hidden scrollbar-thin scrollbar-track-gray-900 scrollbar-thumb-[#f7ab0a]/50 z-0'>
@@ -72,10 +65,10 @@ export default function Home({
 
 
           {/* experience */}
-          { experience.length !== 0 && 
+          {/* { experience.length !== 0 && 
             <section id="experience" className='snap-center scroll-smooth'>
             <Experience experience={experience} />
-          </section>}
+          </section>} */}
 
           {/* skills */}
           <section id="skills" className='snap-center scroll-smooth'>
@@ -102,7 +95,7 @@ export default function Home({
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const pageInfo: PageInfo = await fetchPageInfo()
-  const experience: WorkExperience[] = await fetchExperience()
+  // const experience: WorkExperience[] = await fetchExperience()
   const skill : Technology[]  = await fetchSkills()
   const projects: Projects[] = await fetchProject()
   const socials: Social[] = await fetchSocials()
@@ -110,7 +103,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   return {
     props: {
       pageInfo,
-      experience,
+      // experience,
       skill,
       projects,
       socials,
