@@ -28,7 +28,7 @@ function Experience({experience}: Props) {
         <div className='flex   scrollbar-thin scrollbar-track-gray-600 scrollbar-thumb-[#f7ab0a]/50 space-x-5 px-8  md:px-36 lg:px-60 xl:px-48 snap-x snap-mandatory w-full h-3/4 mt-32 '>
         {
           experience?.map((ex) => (
-            <ExperienceCard  ex={ex}/>
+            <ExperienceCard key={ex._id}  ex={ex}/>
 
           ))
         }

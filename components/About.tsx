@@ -8,10 +8,15 @@ type Props = {
 }
 
 type Para = {
-  children : Array<string>
+  children : Array<Text>,
+  _key: string
+}
+type Text = {
+  text: string
 }
 
 function About({pageInfo}: Props) {
+  console.log(pageInfo)
 
   return (
     <motion.div 
@@ -54,6 +59,7 @@ function About({pageInfo}: Props) {
             {
               pageInfo.content.map((para: Para) => (
                 <p
+                key={para._key}
                 className='xl:text-base md:text-1xl text-xs'
                 >{para.children[0].text}</p>
 

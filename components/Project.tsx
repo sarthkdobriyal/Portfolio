@@ -7,6 +7,13 @@ import Link from 'next/link'
 type Props = {
     projects: Projects[]
 }
+type Para = {
+    children : Array<Text>,
+    _key: string
+  }
+  type Text = {
+    text: string
+  }
 
 function Project({projects}: Props) {
     console.log(projects)
@@ -51,15 +58,15 @@ function Project({projects}: Props) {
 
                             {
                                 project?.technologies.map((tech) => (
-                                    <img className='h-10 w-10' key={tech._id} src={String(urlFor(tech.image))} alt="" />
+                                    <img className='h-10 w-10' key={tech._id} src={String(urlFor(tech.image))} alt={tech.title} />
                                 ))
                             }
                             </div>
 
                             {
                                 project.summary && 
-                                project.summary.map((sum: string) => (
-                                    <p className='text-sm text-center  '>{sum.children[0].text}</p>
+                                project.summary.map((sum: Para) => (
+                                    <p key={sum._key} className='text-sm text-center  '>{sum.children[0].text}</p>
                                 ))
                             }
                             
