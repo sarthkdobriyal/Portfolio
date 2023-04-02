@@ -18,6 +18,7 @@ import { fetchExperience } from '@/utils/fetchExperience';
 import { fetchProject } from '@/utils/fetchProject';
 import { fetchSkills } from '@/utils/fetchSkills';
 import { fetchSocials } from '@/utils/fetchSocials';
+import { useRouter } from 'next/router';
 
 
 type Props = {
@@ -36,6 +37,16 @@ export default function Home({
   skill,
   socials,
 }: Props) {
+
+  // const router = useRouter();
+
+  // if(router.isFallback){
+  //   return (
+  //     <h1>Loading...</h1>
+  //   )
+  // }
+
+
   return (
     <div className='bg-[rgb(36,36,36)] h-screen text-white snap-y snap-mandatory overflow-y-scroll overflow-x-hidden scrollbar-thin scrollbar-track-gray-900 scrollbar-thumb-[#f7ab0a]/50 z-0'>
       <Head>
