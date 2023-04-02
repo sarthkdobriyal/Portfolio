@@ -36,7 +36,7 @@ function About({pageInfo}: Props) {
       <div className='w-full absolute top-[30%] bg-[#f7ab0a]/5 left-0 h-[300px] skew-y-12'>
       </div>
       
-        <h2 className='text-gray-500 uppercase tracking-[20px] md:tracking-[30px] font-semibold absolute top-24 text-2xl md:text-3xl text-center' >About</h2>
+        <h2 className='text-gray-500 uppercase tracking-[20px] md:tracking-[30px] font-semibold absolute top-16 md:top-24 text-2xl md:text-3xl text-center' >About</h2>
 
           
         <motion.img
@@ -52,7 +52,7 @@ function About({pageInfo}: Props) {
             duration:0.8
         }}
         src={String(urlFor(pageInfo.dp))}
-        className='mt-32 md:mt-12 lg:mt-16 md:mb-0 flex-shrink-0  w-52 h-52 rounded-full object-scale-down md:object-contain md:rounded-3xl md:w-80 md:h-80 xl:w-[500px] xl:h-[500px] md:ml-24 '/>
+        className='mt-24 md:mt-12 lg:mt-16 md:mb-0 flex-shrink-0  w-44 h-44 rounded-full object-scale-down md:object-contain md:rounded-lg md:w-80 md:h-80 xl:w-[400px] xl:h-[400px] md:ml-24 '/>
 
       <div className='md:mt-21 mt-0 space-y-4 px-0 md:px-10'>
             <h4 className='font-semibold text-2xl md:text-3xl md:mt-16 italic'>Here is a <span className='underline underline-offset-8 decoration-[#f7ab0a]/50'>little</span> background </h4>
@@ -60,7 +60,7 @@ function About({pageInfo}: Props) {
               pageInfo.content.map((para: Para) => (
                 <p
                 key={para._key}
-                className='xl:text-base md:text-1xl text-xs'
+                className='xl:text-sm md:text-1xl text-xs'
                 >{para.children[0].text}</p>
 
               ))

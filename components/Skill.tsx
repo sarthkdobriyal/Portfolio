@@ -4,12 +4,11 @@ import { Technology } from '@/typings'
 import { urlFor } from '@/sanity'
 
 type Props = {
-    key: string,
     skill: Technology,
     directionLeft?: boolean,
 }
 
-export default function Skill({key, skill, directionLeft}: Props) {
+export default function Skill({ skill, directionLeft}: Props) {
   return (
     <div className='group relative flex cursor-pointer mt-12'>
     <motion.img 
