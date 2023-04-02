@@ -16,7 +16,7 @@ type Text = {
 }
 
 function About({pageInfo}: Props) {
-  console.log(pageInfo)
+  // console.log(pageInfo)
 
   return (
     <motion.div 
