@@ -9,7 +9,7 @@ export const client = createClient({
     projectId,
     dataset,
     apiVersion: '2021-10-21', // https://www.sanity.io/docs/api-versioning
-    useCdn: true, // if you're using ISR or only static generation at build time then you can set this to `false` to guarantee no stale content
+    useCdn: false, // if you're using ISR or only static generation at build time then you can set this to `false` to guarantee no stale content
   })
 
 export const urlFor = (source: any) => createImageUrlBuilder({dataset,projectId}).image(source)
